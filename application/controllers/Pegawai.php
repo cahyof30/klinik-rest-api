@@ -21,10 +21,18 @@ class Pegawai extends RestController
             $pegawai = $this->pegawai->getPegawai($id);
         }
         if ($pegawai) {
-            $this->response([
-                'status' => true,
-                'data' => $pegawai
-            ], RestController::HTTP_OK);
+            $arrayPegawai = [];
+            foreach ($pegawai as $pegawai) {
+                $arrayPegawai[] = [
+                    'nip' => $pegawai['nip'],
+                    'nama' => $pegawai['nama'],
+                    'tanggal_lahir' => $pegawai['tanggal_lahir'],
+                    'nomor_telepon' => $pegawai['nomor_telepon'],
+                    'email' => $pegawai['email'],
+                    'password' => $pegawai['password'],
+                ];
+            }
+            $this->response($arrayPegawai, RestController::HTTP_OK);
         } else {
             $this->response([
                 'status' => false,
@@ -63,7 +71,6 @@ class Pegawai extends RestController
     public function index_post()
     {
         $data = [
-            'id' => $this->post('id'),
             'nip' => $this->post('nip'),
             'nama' => $this->post('nama'),
             'tanggal_lahir' => $this->post('tanggal_lahir'),
@@ -89,7 +96,6 @@ class Pegawai extends RestController
     {
         $id = $this->put('id');
         $data = [
-            'id' => $this->put('id'),
             'nip' => $this->put('nip'),
             'nama' => $this->put('nama'),
             'tanggal_lahir' => $this->put('tanggal_lahir'),

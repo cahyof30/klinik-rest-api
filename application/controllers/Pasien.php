@@ -21,10 +21,18 @@ class Pasien extends RestController
             $pasien = $this->pegawai->getPasien($id);
         }
         if ($pasien) {
-            $this->response([
-                'status' => true,
-                'data' => $pasien
-            ], RestController::HTTP_OK);
+            $arrayPoli = [];
+            foreach ($pasien as $pasien) {
+                $arrayPasien[] = [
+                    'nomor_rm' => $pasien['nomor_rm'],
+                    'nama' => $pasien['nama'],
+                    'tanggal_lahir' => $pasien['tanggal_lahir'],
+                    'nomor_telepon' => $pasien['nomor_telepon'],
+                    'alamat' => $pasien['alamat']
+
+                ];
+            }
+            $this->response($arrayPoli, RestController::HTTP_OK);
         } else {
             $this->response([
                 'status' => false,
@@ -63,7 +71,6 @@ class Pasien extends RestController
     public function index_post()
     {
         $data = [
-            'id' => $this->post('id'),
             'nomor_rm' => $this->post('nomor_rm'),
             'nama' => $this->post('nama'),
             'tanggal_lahir' => $this->post('tanggal_lahir'),
@@ -88,7 +95,6 @@ class Pasien extends RestController
     {
         $id = $this->put('id');
         $data = [
-            'id' => $this->put('id'),
             'nomor_rm' => $this->put('nomor_rm'),
             'nama' => $this->put('nama'),
             'tanggal_lahir' => $this->put('tanggal_lahir'),
