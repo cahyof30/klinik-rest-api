@@ -89,13 +89,13 @@ class Pegawai extends RestController
     {
         $id = $this->put('id');
         $data = [
-            'id' => $this->post('id'),
-            'nip' => $this->post('nip'),
-            'nama' => $this->post('nama'),
-            'tanggal_lahir' => $this->post('tanggal_lahir'),
-            'nomor_telepon' => $this->post('nomor_telepon'),
-            'email' => $this->post('email'),
-            'password' => $this->post('password')
+            'id' => $this->put('id'),
+            'nip' => $this->put('nip'),
+            'nama' => $this->put('nama'),
+            'tanggal_lahir' => $this->put('tanggal_lahir'),
+            'nomor_telepon' => $this->put('nomor_telepon'),
+            'email' => $this->put('email'),
+            'password' => $this->put('password')
         ];
 
         if ($this->pegawai->updatePegawai($data, $id) > 0) {

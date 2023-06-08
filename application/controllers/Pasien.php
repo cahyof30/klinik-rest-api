@@ -88,12 +88,12 @@ class Pasien extends RestController
     {
         $id = $this->put('id');
         $data = [
-            'id' => $this->post('id'),
-            'nomor_rm' => $this->post('nomor_rm'),
-            'nama' => $this->post('nama'),
-            'tanggal_lahir' => $this->post('tanggal_lahir'),
-            'nomor_telepon' => $this->post('nomor_telepon'),
-            'alamat' => $this->post('alamat')
+            'id' => $this->put('id'),
+            'nomor_rm' => $this->put('nomor_rm'),
+            'nama' => $this->put('nama'),
+            'tanggal_lahir' => $this->put('tanggal_lahir'),
+            'nomor_telepon' => $this->put('nomor_telepon'),
+            'alamat' => $this->put('alamat')
         ];
 
         if ($this->pasien->updatePasien($data, $id) > 0) {
