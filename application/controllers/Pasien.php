@@ -16,12 +16,12 @@ class Pasien extends RestController
     {
         $id = $this->get('id');
         if ($id === null) {
-            $pasien = $this->pegawai->getPasien();
+            $pasien = $this->pasien->getPasien();
         } else {
-            $pasien = $this->pegawai->getPasien($id);
+            $pasien = $this->pasien->getPasien($id);
         }
         if ($pasien) {
-            $arrayPoli = [];
+            $arrayPasien = [];
             foreach ($pasien as $pasien) {
                 $arrayPasien[] = [
                     'nomor_rm' => $pasien['nomor_rm'],
@@ -32,7 +32,7 @@ class Pasien extends RestController
 
                 ];
             }
-            $this->response($arrayPoli, RestController::HTTP_OK);
+            $this->response($arrayPasien, RestController::HTTP_OK);
         } else {
             $this->response([
                 'status' => false,
